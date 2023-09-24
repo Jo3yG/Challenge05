@@ -1,34 +1,74 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
+
+// changed to (document).ready to wait for page
+//to upload before script ran
+$(document).ready(function () {
+    
   //first we add a listener for click events and saveBtn was in index.html
-  $(".saveBtn").on("click",function(){
-    var toDo = $(this).siblings("description").val();
+  //we have added listeners before and saved to local storage, not new
+  $(".saveBtn").click(function(event){
+    event.preventDefault();
+    //no lie the "this" part was confusing and difficult
+    var toDo = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
     //then we want to save data of the description and id (time) to local storage
-    localStorage.setItem(time.toDo)
+    localStorage.setItem(time, toDo)
   })
-    // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
-    //
-    // TODO: Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour. HINTS: How can the id
-    // attribute of each time-block be used to conditionally add or remove the
-    // past, present, and future classes? How can Day.js be used to get the
-    // current hour in 24-hour time?
-    //
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
+
+    //used dayjs to put current day and date on header
+    //this using the API of dayjs
+    //was going to use other API but decided against it.
+    var today = dayjs();
+    $("#currentDay").text(today.format("dddd, MMM D, YYYY, HH:mm:ss"));
+
+ //loop
+$(".time-block").each(function(){
+  var currentTime = dayjs().hour;
+  var timeBlo = $(this).attr("id").split("hour")[1];
+
+  if (currentTime === timeBlo){
+    $(this).removeClass("future");
+    $(this).removeClass("past");
+    $(this).addClass("present");
+
+  }
+  else if (currentTime < timeBlo){
+    $(this).removeClass("future");
+    $(this).removeClass("present");
+    $(this).addClass("past");
+
+  }
+  else if (currentTime > timeBlo){
+    $(this).removeClass("present");
+    $(this).removeClass("past");
+    $(this).addClass("future");
+
+  }
+})
+
+
+//this part was giving me problems
+//first i forgot my(.) in front of description
+//then in the begining i was using ex:hour8 instead of #hour-8
+//then after the getItem i was using the ID of ex:9AM
+$("#hour-8 .description").val(localStorage.getItem("hour-8"));
+$("#hour-9 .description").val(localStorage.getItem("hour-9"));
+$("#hour-10 .description").val(localStorage.getItem("hour-10"));
+$("#hour-11 .description").val(localStorage.getItem("hour-11"));
+$("#hour-12 .description").val(localStorage.getItem("hour-12"));
+$("#hour-13 .description").val(localStorage.getItem("hour-13"));
+$("#hour-14 .description").val(localStorage.getItem("hour-14"));
+$("#hour-15 .description").val(localStorage.getItem("hour-15"));
+$("#hour-16 .description").val(localStorage.getItem("hour-16"));
+$("#hour-17 .description").val(localStorage.getItem("hour-17"));
+$("#hour-18 .description").val(localStorage.getItem("hour-18"));
+$("#hour-19 .description").val(localStorage.getItem("hour-19"));
+$("#hour-20 .description").val(localStorage.getItem("hour-20"));
+$("#hour-21 .description").val(localStorage.getItem("hour-21"));
+$("#hour-22 .description").val(localStorage.getItem("hour-22"));
+
+//i tried to use this but it belong to a different API i found
+//on the internet, wanted to use dayjs instead
+    //var dayTimeCurrent =moment().format("dddd, MMM Do YYYY");
+    //$("#currentDay").html(dayTimeCurrent);
     
-  });
-  var dayTimeCurrent =moment().format("dddd, MMM Do YYYY");
-    $("#currentDay").html(dayTimeCurrent);
-    
+  });    
