@@ -26,3 +26,12 @@ The code was already partly given to us and we just had to add extra code as wel
 There were a lot of problems i came across with this one, learning the "this" was kinda troublesome and gave me some real hard issues, also i had a couple of blunders when I was inputing the wrong classes by nameing them differently, i was able to recover from local storage after I was able to name everything correctly and use the correct names where they need to be.
 ## Offline
 I did do a lot of this code offline so there will be limited commets when i git push and what not but i tried to add enough commets on my actual code to get the reader to understand what i was trying to accomplish and what i wanted to add, i wanted to use a different API for the date and time but though otherwise.
+
+## Image
+![Alt text](<Screenshot 2023-09-23 at 9.13.17 PM.png>)
+## GitHub Repository
+https://github.com/Jo3yG/Challenge05.git
+## URL
+https://jo3yg.github.io/Challenge05/
+## Profile URL
+https://jo3yg.github.io/Challenge02/
